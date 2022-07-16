@@ -1,8 +1,8 @@
 import React from 'react'
 import './Board.css';
 import Square from './Square'
-import {connectToSquares} from '../store/connecters/Board'
-const Board = connectToSquares(({squares, updateSquares}) => {
+import {connectToBoard} from '../store/connecters/Board'
+const Board = connectToBoard(({squares, updateSquares}) => {
   console.log(squares)
   console.log(updateSquares)
   function getSquareUI(pos) {

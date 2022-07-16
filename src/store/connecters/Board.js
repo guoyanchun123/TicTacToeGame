@@ -7,4 +7,4 @@ const squaresDispatcher = (dispatch) => {
     updateSquares: (attrs) => dispatch({type: 'updateSquares', payLoad: attrs})
   }
 }
-export const connectToSquares = connect(squaresSelector, squaresDispatcher)
+export const connectToBoard = connect(squaresSelector, squaresDispatcher)
