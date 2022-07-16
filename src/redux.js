@@ -3,7 +3,6 @@ let state = undefined
 let reducer = undefined
 let listeners = []
 const setState = (newState) => {
-  debugger
   state = newState
   listeners.forEach(fn => fn(state))
 }
@@ -12,7 +11,6 @@ const store = {
       return state
     },
     dispatch: (action) => {
-      debugger
       setState(reducer(state, action))
     },
     subscribe: (fn) => {
@@ -45,7 +43,6 @@ const changed = (oldState, newState) => {
 let  dispatch = store.dispatch
 const prevDispatch = dispatch
 dispatch = (action) => {
-  debugger
   if (action instanceof Function) {
     action(dispatch) // dispatch既可以处理函数，又可以处理对象
   } else {
@@ -69,12 +66,10 @@ export const connect = (selector, dispatchSelector) => (Component) => {
   
       const [, update] = useState({})
       const data = selector ? selector(state) : {state}
-      debugger
       const dispatchers = dispatchSelector ? dispatchSelector(dispatch) : {dispatch}
       // 强制刷新wrapper组件，每次dispatch就刷新dispatch的组件。
       useEffect(() => 
         store.subscribe(() => {
-          debugger
           const newData = selector ? selector(state) : {state: state}
           if (changed(data, newData)) {
             console.log('update')
