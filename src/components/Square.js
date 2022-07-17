@@ -1,6 +1,6 @@
 import React from 'react'
 import './Square.css';
-const Square = ({pos, info}) => {
+const Square = ({pos, info, clickSquare}) => {
   function getSquareTitle() {
     let title = pos
     if (info) {
@@ -8,8 +8,11 @@ const Square = ({pos, info}) => {
     }
     return title
   }
+  function clickFun() {
+    clickSquare(pos, info)
+  }
   return (
-    <div className='square'>
+    <div className='square' onClick={clickFun}>
       {getSquareTitle()}
     </div>
   )

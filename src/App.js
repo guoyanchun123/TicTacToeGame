@@ -19,7 +19,7 @@ function App() {
           </div>
           <div className='rightPanel'>
             <PlayerInfo />
-            <History />
+            <History/>
           </div>
         </div>
       </Provider>

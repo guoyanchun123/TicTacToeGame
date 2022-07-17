@@ -1,11 +1,26 @@
 const reducer = (state, { type, payLoad }) => {
     if (type === 'updateUser') {
         return {
-        ...state,
-        user: {
-            ...state.user,
-            ...payLoad
+            ...state,
+            user: {
+                ...state.user,
+                ...payLoad
+            }
         }
+    } else if (type === 'updateHistory') {
+        return {
+            ...state,
+            history: payLoad.history
+        }
+    } else if (type === 'updateStepCount') {
+        return {
+            ...state,
+            stepCount: payLoad.stepCount
+        }
+    } else if (type === 'updateSquares') {
+        return {
+            ...state,
+            squares: payLoad.squares
         }
     } else {
         return state

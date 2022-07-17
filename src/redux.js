@@ -16,7 +16,7 @@ const store = {
     subscribe: (fn) => {
       listeners.push(fn)
       return () => {
-        const index = listeners.index(fn)
+        const index = listeners.indexOf(fn)
         listeners.splice(index, 1)
       }
     }

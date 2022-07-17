@@ -2,4 +2,9 @@ import {connect} from '../../redux'
 const historySelector = state => {
     return {history: state.history}
 }
-export const connectToHistory = connect(historySelector, null)
+const historyDispatcher = (dispatch) => {
+  return {
+    updateHistory: (attrs) => dispatch({type: 'updateHistory', payLoad: attrs})
+    }
+  }
+export const connectToHistory = connect(historySelector, historyDispatcher)
