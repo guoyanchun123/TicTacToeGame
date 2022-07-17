@@ -12,7 +12,6 @@ const Square = ({pos, info, winPos, clickSquare}) => {
   function clickFun() {
     clickSquare(pos, info)
   }
-  console.log(winPos)
   if (winPos.indexOf(pos) > -1) {
     return (
       <span className='square winner' onClick={clickFun}>

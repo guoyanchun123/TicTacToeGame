@@ -34,7 +34,6 @@ const Board = connectToBoard(({squares,stepCount,history,winner,winPos, updateHi
     }
     return winPlay
   }
-  console.log(winPos)
   function clickSquare(pos, info) {
     if (info === null && winner !== '') {
       alert('The game has won, and the game is over!')
