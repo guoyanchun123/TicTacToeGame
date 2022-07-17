@@ -2,12 +2,36 @@ import React from 'react'
 import './Board.css';
 import Square from './Square'
 import {connectToBoard} from '../store/connecters/Board'
-const Board = connectToBoard(({squares,stepCount,history, updateHistory, updateSquares, updateStepCount}) => {
-  console.log(squares)
-  console.log(updateSquares)
-  console.log(history)
+const Board = connectToBoard(({squares,stepCount,history,winner, updateHistory, updateSquares, updateStepCount, updateWinner, updateIsOver}) => {
+  function getWinner(squaresNew) {
+    const winConditions = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ]
+    let winPlay = ''
+    for (let i = 0; i < winConditions.length; i++) {
+      let curCondition = winConditions[i]
+      let first = squaresNew[curCondition[0]]
+      let second = squaresNew[curCondition[1]]
+      let third = squaresNew[curCondition[2]]
+      if (null !== first && first === second && second === third) {
+        winPlay = first
+        break
+      }
+    }
+    return winPlay
+  }
   function clickSquare(pos, info) {
-    if (info === null) {
+    if (info === null && winner !== '') {
+      alert('The game has won, and the game is over!')
+    }
+    if (info === null && winner === '') {
       const newHistory = JSON.parse(JSON.stringify(history))
       newHistory.push({
         stepCount,
@@ -25,6 +49,20 @@ const Board = connectToBoard(({squares,stepCount,history, updateHistory, updateS
       updateSquares({
         squares: newSquares
       })
+      const winPlayer = getWinner(newSquares)
+      if (winPlayer !== '') {
+        updateWinner({
+          winner: winPlayer
+        })
+        updateIsOver({
+          isOver: true
+        })
+      }
+      if (newHistory.length === 9) {
+        updateIsOver({
+          isOver: true
+        })
+      }
     }
   }
   function getSquareUI(pos) {

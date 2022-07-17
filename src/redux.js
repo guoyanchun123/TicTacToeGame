@@ -72,7 +72,6 @@ export const connect = (selector, dispatchSelector) => (Component) => {
         store.subscribe(() => {
           const newData = selector ? selector(state) : {state: state}
           if (changed(data, newData)) {
-            console.log('update')
             update({})
           }
         }),[selector])  // eslint-disable-line react-hooks/exhaustive-deps

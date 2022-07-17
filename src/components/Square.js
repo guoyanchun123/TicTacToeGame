@@ -5,16 +5,17 @@ const Square = ({pos, info, clickSquare}) => {
     let title = pos
     if (info) {
       title = info
+      return <span>{title}</span>
     }
-    return title
+    return <span className='hidden'>{title}</span>
   }
   function clickFun() {
     clickSquare(pos, info)
   }
   return (
-    <div className='square' onClick={clickFun}>
+    <span className='square' onClick={clickFun}>
       {getSquareTitle()}
-    </div>
+    </span>
   )
 }
 export default Square;

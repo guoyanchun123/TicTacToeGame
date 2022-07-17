@@ -22,7 +22,18 @@ const reducer = (state, { type, payLoad }) => {
             ...state,
             squares: payLoad.squares
         }
-    } else {
+    } else if (type === 'updateWinner') {
+        return {
+            ...state,
+            winner: payLoad.winner
+        }
+    } else if (type === 'updateIsOver') {
+        return {
+            ...state,
+            isOver: payLoad.isOver
+        }
+    }
+    else {
         return state
     }
 }

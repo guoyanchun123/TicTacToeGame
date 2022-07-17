@@ -5,8 +5,12 @@
   border: 1px solid #2e3033;
   font-size: 30px;
   line-height: 80px;
+  box-sizing: border-box;
 }
 .square:hover{
-  border-color: red;
-  color: red;
+  border-color: #4395ff;
+  color: #4395ff;
+}
+.square .hidden {
+  opacity: 0;
 }
