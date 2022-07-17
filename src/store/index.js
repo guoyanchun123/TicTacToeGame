@@ -7,6 +7,7 @@ const state = {
     stepCount: 0, // 走的第几步
     winner: '',
     isOver: false,
+    winPos: [],
     history: [] // 走的详细信息
 }
 const store = createStore(reducer, state)

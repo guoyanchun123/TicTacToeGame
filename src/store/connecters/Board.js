@@ -4,7 +4,8 @@ const squaresSelector = state => {
       squares: state.squares,
       stepCount: state.stepCount,
       history: state.history,
-      winner: state.winner
+      winner: state.winner,
+      winPos: state.winPos
     }
 }
 const squaresDispatcher = (dispatch) => {
@@ -13,7 +14,8 @@ const squaresDispatcher = (dispatch) => {
     updateHistory: (attrs) => dispatch({type: 'updateHistory', payLoad: attrs}),
     updateStepCount: (attrs) => dispatch({type: 'updateStepCount', payLoad: attrs}),
     updateWinner: (attrs) => dispatch({type: 'updateWinner', payLoad: attrs}),
-    updateIsOver: (attrs) => dispatch({type: 'updateIsOver', payLoad: attrs})
+    updateIsOver: (attrs) => dispatch({type: 'updateIsOver', payLoad: attrs}),
+    updateWinPos: (attrs) => dispatch({type: 'updateWinPos', payLoad: attrs})
   }
 }
 export const connectToBoard = connect(squaresSelector, squaresDispatcher)

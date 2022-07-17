@@ -32,8 +32,12 @@ const reducer = (state, { type, payLoad }) => {
             ...state,
             isOver: payLoad.isOver
         }
-    }
-    else {
+    } else if (type === 'updateWinPos') {
+        return {
+            ...state,
+            winPos: payLoad.winPos
+        }
+    } else {
         return state
     }
 }

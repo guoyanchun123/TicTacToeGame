@@ -1,7 +1,7 @@
 import React from 'react'
 import './History.css';
 import {connectToHistory} from '../store/connecters/History'
-const History = connectToHistory(({history, updateHistory, updateSquares, updateStepCount, updateWinner, updateIsOver}) => {
+const History = connectToHistory(({history, updateHistory, updateSquares, updateStepCount, updateWinner, updateIsOver, updateWinPos}) => {
   function restart() {
     updateHistory({
       history: []
@@ -17,6 +17,9 @@ const History = connectToHistory(({history, updateHistory, updateSquares, update
     })
     updateIsOver({
       isOver: false
+    })
+    updateWinPos({
+      winPos: []
     })
   }
   function getWinner(squaresNew) {
@@ -38,6 +41,13 @@ const History = connectToHistory(({history, updateHistory, updateSquares, update
       let third = squaresNew[curCondition[2]]
       if (null !== first && first === second && second === third) {
         winPlay = first
+        updateWinPos({
+          winPos: [
+            curCondition[0],
+            curCondition[1],
+            curCondition[2]
+          ]
+        })
         break
       }
     }
@@ -66,6 +76,9 @@ const History = connectToHistory(({history, updateHistory, updateSquares, update
         isOver: true
       })
     } else {
+      updateWinPos({
+        winPos: []
+      })
       if (newHistory.length < 9) {
         updateIsOver({
           isOver: false

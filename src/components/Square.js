@@ -1,6 +1,6 @@
 import React from 'react'
 import './Square.css';
-const Square = ({pos, info, clickSquare}) => {
+const Square = ({pos, info, winPos, clickSquare}) => {
   function getSquareTitle() {
     let title = pos
     if (info) {
@@ -11,6 +11,14 @@ const Square = ({pos, info, clickSquare}) => {
   }
   function clickFun() {
     clickSquare(pos, info)
+  }
+  console.log(winPos)
+  if (winPos.indexOf(pos) > -1) {
+    return (
+      <span className='square winner' onClick={clickFun}>
+        {getSquareTitle()}
+      </span>
+    )
   }
   return (
     <span className='square' onClick={clickFun}>

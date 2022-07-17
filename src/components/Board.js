@@ -2,7 +2,7 @@ import React from 'react'
 import './Board.css';
 import Square from './Square'
 import {connectToBoard} from '../store/connecters/Board'
-const Board = connectToBoard(({squares,stepCount,history,winner, updateHistory, updateSquares, updateStepCount, updateWinner, updateIsOver}) => {
+const Board = connectToBoard(({squares,stepCount,history,winner,winPos, updateHistory, updateSquares, updateStepCount, updateWinner, updateIsOver, updateWinPos}) => {
   function getWinner(squaresNew) {
     const winConditions = [
       [0,1,2],
@@ -22,11 +22,19 @@ const Board = connectToBoard(({squares,stepCount,history,winner, updateHistory, 
       let third = squaresNew[curCondition[2]]
       if (null !== first && first === second && second === third) {
         winPlay = first
+        updateWinPos({
+          winPos: [
+            curCondition[0],
+            curCondition[1],
+            curCondition[2]
+          ]
+        })
         break
       }
     }
     return winPlay
   }
+  console.log(winPos)
   function clickSquare(pos, info) {
     if (info === null && winner !== '') {
       alert('The game has won, and the game is over!')
@@ -66,7 +74,7 @@ const Board = connectToBoard(({squares,stepCount,history,winner, updateHistory, 
     }
   }
   function getSquareUI(pos) {
-    return (<Square pos={pos} info={squares[pos]} clickSquare={clickSquare}/>)
+    return (<Square pos={pos} info={squares[pos]} winPos={winPos} clickSquare={clickSquare}/>)
   }
   return (
     <div className='board'>

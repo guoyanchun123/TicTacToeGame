@@ -7,10 +7,13 @@
   line-height: 80px;
   box-sizing: border-box;
 }
-.square:hover{
+/* .square:hover{
   border-color: #4395ff;
   color: #4395ff;
-}
+} */
 .square .hidden {
   opacity: 0;
+}
+.winner{
+  background-color: #33CCCC;
 }
